@@ -1,0 +1,5 @@
+### get all cars
+GET http://localhost:8081/cars
+
+### get car by id
+GET http://localhost:8081/cars/1
