@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<property name="PRO_HOME" value="."/>
+	<property name="USER_HOME" value="${PRO_HOME}" />
+	<property name="LOG_FILE_NAME"  value="car-service" />
+	<property name="FW_LOG_FILE_NAME"  value="car-service-spframework" />
+
+	<timestamp key="bySecond" datePattern="yyyyMMdd.HHmmss" />
+
+	<appender name="FILE-ENGINE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${USER_HOME}/${FW_LOG_FILE_NAME}-${bySecond}.error.log</file>
+    	<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      		<!-- rollover daily -->
+      		<fileNamePattern>${USER_HOME}/${LOG_FILE_NAME}-%d{yyyy-MM-dd}/${bySecond}.%i.error.log.zip</fileNamePattern>
+       		<maxFileSize>1MB</maxFileSize>
+    	</rollingPolicy>
+    	<encoder>
+      		<pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    	</encoder>
+	</appender>
+	
+	<appender name="FILE-ENGINE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${USER_HOME}/${LOG_FILE_NAME}-${bySecond}.log</file>
+    	<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      		<!-- rollover daily -->
+      		<fileNamePattern>${USER_HOME}/${LOG_FILE_NAME}-%d{yyyy-MM-dd}/${bySecond}.%i.log.zip</fileNamePattern>
+       		<maxFileSize>1MB</maxFileSize>
+    	</rollingPolicy>
+    	<encoder>
+      		<pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    	</encoder>
+	</appender>
+	
+	<logger name="com.capgemini.pensionforyou.api" level="info" additivity="false">
+		<appender-ref ref="FILE-ENGINE" />
+	</logger>
+
+	<logger name="org.springframework" level="error" additivity="false">
+		<appender-ref ref="FILE-ENGINE-ERROR" />
+	</logger>
+
+	<root level="error">
+		<appender-ref ref="FILE-ENGINE-ERROR" />
+	</root>
+
+</configuration>
