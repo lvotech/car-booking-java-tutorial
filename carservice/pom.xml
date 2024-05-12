@@ -14,6 +14,8 @@
 	<description>Car booking - Java training</description>
 	<properties>
 		<java.version>11</java.version>
+		<logback.version>1.2.8</logback.version>
+		<log4j2.version>2.17.0</log4j2.version>
 	</properties>
 	<dependencies>
 		<!-- Spring Boot Starter Web for RESTful web services -->
@@ -48,6 +50,13 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
+		<!-- Auto generate API doccument -->
+		<!-- <dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>3.0.0</version>
+		</dependency> -->
 
 		<!-- Unit test -->
 		<dependency>
